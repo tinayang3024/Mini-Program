@@ -7,24 +7,18 @@ Page({
     searchKey: '',
     searchKeyList: []
   },
-  toSearchResult: function (){
+  storeAndSearch: function (e) {
+    let newList = this.data.searchKeyList;
+    newList.push(e.detail.value);
+    this.setData({
+      searchKeyList: newList,
+    })
+    wx.setStorageSync('searchKey', e.detail.value);
+    console.log('search history:' + this.data.searchKeyList);
+    console.log('searching:' + e.detail.value);
     wx.navigateTo({
       url: '../searchResult/searchResult',
     })
-  },
-  // push function
-  push: function (array, item) {
-    let newArray = [];
-    for (i = 0; i < array.length; i++) {
-      newArray[i] = array[i];
-    }
-    newArray[i + 1] = item;
-    return newArray;
-  },
-  
-  obtainSearchKey: function (e) {
-    searchKeyList: push(searchKeyList, e.detail.value);
-    console.log(searchKeyList);
   },
 
   /**

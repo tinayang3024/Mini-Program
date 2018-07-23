@@ -1,20 +1,19 @@
 // pages/searchResult/searchResult.js
+let search = require("../search/search.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    songName: [],
-    singer: [],
-    songURL: []
+    searchKey: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
   },
 
   /**
@@ -28,7 +27,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    let searching = wx.getStorageSync('searchKey');
+    this.setData({
+      searchKey: searching
+    })
   },
 
   /**

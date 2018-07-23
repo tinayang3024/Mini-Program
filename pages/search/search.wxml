@@ -1,7 +1,5 @@
 <view class = 'container'>
   <view>
-    <input placeholder="Search" confirm-type='search' bindinput="obtainSearchKey"></input>
+    <input placeholder="Search" confirm-type='search' bindconfirm="storeAndSearch"></input>
   </view>
 </view>
-
-<button bindtap='toSearchResult'>jump to searchResult</button>
