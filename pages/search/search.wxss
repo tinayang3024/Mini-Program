@@ -1,0 +1,5 @@
+.container{
+  padding: 10rpx;
+  border: 10rpx;
+  border: #BEBEBE 10rpx solid;
+}

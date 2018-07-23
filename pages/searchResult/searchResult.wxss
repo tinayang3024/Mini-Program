@@ -1,0 +1,29 @@
+/* pages/searchResult/searchResult.wxss */
+.songList {
+  display: block;
+  padding: 20rpx;
+  border: #BEBEBE 10rpx solid;
+}
+.songInfo {
+  display: inline-block;
+  padding: 0rpx 50rpx;
+}
+.songName {
+  font-size: 60rpx;
+}
+.songImgBlock {
+  display: inline-block;
+  margin: 0rpx;
+  padding: 0rpx;
+  height: 110rpx;
+}
+.songImg {
+  float: left;
+  width: 100rpx;
+  height: 100rpx;
+  vertical-align: middle;
+}
+.singer {
+  color: grey;
+  font-size: 30rpx;
+}

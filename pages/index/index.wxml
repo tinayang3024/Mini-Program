@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<swiper indicator-dots="true" autoplay='ture' interval='5000' duration='2000' circular='true'>
+  <swiper-item wx:for = "{{sliderURLs}}">
+    <image src = "{{item}}" width = "100"/>
+  </swiper-item>
+</swiper>

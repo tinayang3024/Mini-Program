@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/search/search",
+    "pages/searchResult/searchResult"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#e4f8ff",
+    "navigationBarTitleText": "Music",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "main",
+        "selectedColor": "black",
+        "iconPath": "asserts/pictures/musicGrey.png",
+        "selectedIconPath": "asserts/pictures/musicBlue.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "search",
+        "selectedColor": "black",
+        "iconPath": "asserts/pictures/searchGrey.png",
+        "selectedIconPath": "asserts/pictures/searchBlue.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "personal",
+        "selectedColor": "black",
+        "iconPath": "asserts/pictures/personalGrey.png",
+        "selectedIconPath": "asserts/pictures/personalBlue.png"
+      }
+    ],
+    "backgroundColor": "#e4f8ff",
+    "borderStyle": "black",
+    "color": "grey",
+    "selectedColor": "#6ec1de"
+  }
+}

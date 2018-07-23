@@ -1,0 +1,21 @@
+<!--pages/searchResult/searchResult.wxml-->
+
+
+<!-- template for each song -->
+<template name = "songList">
+  <view class = "songList">
+    <view class = "songImgBlock">
+      <image class = "songImg" src = '{{songURL}}' />
+    </view>
+    <view class = "songInfo">
+      <view class = 'songName'>
+        {{songName}}
+      </view>
+      <view class = 'singer'>
+        {{singer}}
+      </view>
+    </view>
+  </view>
+</template>
+
+<template is = "songList" data = "{{songURL:'../../asserts/pictures/musicBlue.png', songName: 'Song Name', singer: 'singer'}}"></template>
