@@ -17,7 +17,12 @@ Page({
     let searching = wx.getStorageSync('searchKey');
     this.setData({
       searchKey: searching
-    })
+    });
+    wx.showToast({
+      title: 'Loading...',
+      icon: "loading",
+      duration: 1000
+    });
   },
 
   /**

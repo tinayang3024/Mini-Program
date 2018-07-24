@@ -3,6 +3,8 @@
   display: block;
   padding: 20rpx;
   border: #BEBEBE 10rpx solid;
+  flex: 1;
+  flex-direction: column;
 }
 .songInfo {
   display: inline-block;

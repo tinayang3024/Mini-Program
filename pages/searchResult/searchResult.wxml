@@ -1,7 +1,7 @@
 <!--pages/searchResult/searchResult.wxml-->
 
 
-<!-- template for each song -->
+<!-- template version -->
 <template name = "songList">
   <view class = "songList">
     <view class = "songImgBlock">
@@ -18,5 +18,24 @@
   </view>
 </template>
 
+
 <view id='searchResult'>Search Result for {{searchKey}}:</view>
-<template is = "songList" data = "{{songURL:'../../asserts/pictures/musicBlue.png', songName: 'Song Name', singer: 'singer'}}"></template>
+ <template is = "songList" data = "{{songURL:'../../asserts/pictures/musicBlue.png', songName: 'Song Name', singer: 'singer'}}"></template>
+
+
+<!-- navigator version  -->
+<scroll-view class='pageBody' scroll-y = 'true'>
+  <!-- navigate to play page, enter the array name of the data -->
+  <navigator url='???' wx:for="{{???}}">
+    <view class='songList'>
+      <!-- enter src of the img -->
+      <image class ='songImg'src='{{item.???}}' />
+      <view class='songInfo'>
+        <!-- enter name of the song -->
+        <text class='songName'>{{item.???}}</text>
+        <!-- enter singer -->
+        <text class='singer'>{{item.???}}</text>
+      </view>
+    </view>
+  </navigator>
+</scroll-view>
