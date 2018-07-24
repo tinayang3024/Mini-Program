@@ -5,17 +5,19 @@
   align-items: center;
 }
 
-.userinfo-avatar {
+.userInfoBox {
+  display: block;
+  float: left;
+  align-items: top;
+}
+
+.userInfoBox-avatar {
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
 }
 
-.userinfo-nickname {
+.userInfoBox-nickname {
   color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
 }

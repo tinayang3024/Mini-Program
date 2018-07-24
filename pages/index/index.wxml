@@ -1,6 +1,19 @@
 <!--index.wxml-->
+<!-- template for song list -->
+<template name='listBlock'>
+  <view class='listBlock'>
+    <image class='listImg' src = "{{songImgURL}}" mode='aspectFit'  />
+    <view class='listTitle'>{{songListTitle}}</view>
+  </view>
+</template>
+
+
+
 <swiper indicator-dots="true" autoplay='ture' interval='5000' duration='2000' circular='true'>
   <swiper-item wx:for = "{{sliderURLs}}">
     <image src = "{{item}}" width = "100"/>
   </swiper-item>
 </swiper>
+
+
+<template is = "listBlock" data = "{{songImgURL:'../../asserts/pictures/musicBlue.png', songListTitle: 'List Name'}}"></template>

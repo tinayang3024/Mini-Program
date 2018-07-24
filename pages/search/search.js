@@ -11,16 +11,28 @@ Page({
     let newList = this.data.searchKeyList;
     newList.push(e.detail.value);
     this.setData({
-      searchKeyList: newList,
+      searchKeyList: newList
     })
     wx.setStorageSync('searchKey', e.detail.value);
     console.log('search history:' + this.data.searchKeyList);
     console.log('searching:' + e.detail.value);
     wx.navigateTo({
+      url: '../searchResult/searchResult'
+    })
+  },
+  dropdownSearch: function (dropdownKey) {
+    let newList = this.data.searchKeyList;
+    newList.push(dropdownKey);
+    this.setData({
+      searchKeyList: newList
+    })
+    wx.setStorageSync('searchKey', dropdownKey);
+    console.log('search history:' + this.data.searchKeyList);
+    console.log('searching:' + dropdownKey);
+    wx.navigateTo({
       url: '../searchResult/searchResult',
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

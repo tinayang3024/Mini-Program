@@ -1,5 +1,10 @@
-<view class = 'container'>
-  <view>
+
+
+<view class='container'>
+  <view class='dropdown'>
     <input placeholder="Search" confirm-type='search' bindconfirm="storeAndSearch"></input>
+    <view class='dropdownContent' wx:for="{{searchKeyList}}">
+      <view bindtap='dropdownSearch({{item}})'>{{item}}</view>
+    </view>
   </view>
 </view>

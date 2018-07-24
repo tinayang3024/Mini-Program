@@ -18,5 +18,5 @@
   </view>
 </template>
 
-<view>Search Result for {{searchKey}}:</view>
+<view id='searchResult'>Search Result for {{searchKey}}:</view>
 <template is = "songList" data = "{{songURL:'../../asserts/pictures/musicBlue.png', songName: 'Song Name', singer: 'singer'}}"></template>
