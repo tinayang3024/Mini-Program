@@ -34,7 +34,7 @@ Page({
           that.setData({
             songList: tempList
           });
-          console.log('stored image for song[' + index + ']');
+          // console.log('stored image for song[' + index + ']');
           that.obtainImgURL(index+1);
         }
       })

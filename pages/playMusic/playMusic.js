@@ -8,13 +8,18 @@ Page({
     name:'',
     singer:'',
     picURL:'',
-    id:''
+    id:'',
+    otherLangLyric:'',
+    chLyric:'',
+    audioURL:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+
     wx.showToast({
       title: 'Loading...',
       icon: "loading",
@@ -30,24 +35,55 @@ Page({
       picURL: options.picURL,
       id: options.id
     });
-    // wx.request({
-    //   url: 'https://mkblog.cn/blog/musicapi',
-    //   data: {
-    //     key: 'test',
-    //     types: 'search',
-    //     source: 'tencent',
-    //     id: options.id
-    //   },
-    //   success: function (res) {
-    //     wx.hideLoading();
-    //     console.log('selected song of Result:');
-    //     console.log(res);
-    //     that.setData({
-    //       songList: res.data
-    //     });
-    //     that.obtainImgURL(0);
-    //   }
-    // })
+
+    // requesting lyric
+    wx.request({
+      url: 'https://mkblog.cn/blog/musicapi',
+      data: {
+        key: 'test',
+        types: 'lyric',
+        source: 'tencent',
+        id: this.data.id
+      },
+      success: function (res) {
+        wx.hideLoading();
+        // console.log('lyric:');
+        // console.log(res);
+        if(res.tlyric === ''){
+          that.setData({
+            chLyric: res.data.lyric
+          });
+          console.log(that.data.chLyric);
+        }else{
+          that.setData({
+            otherLangLyric: res.data.lyric,
+            chLyric: res.data.tlyric
+          });
+          console.log(that.data.otherLangLyric);
+          console.log(that.data.chLyric);
+        }
+      }
+    });
+
+    // requesting audio url
+    wx.request({
+      url: 'https://mkblog.cn/blog/musicapi',
+      data: {
+        key: 'test',
+        types: 'url',
+        source: 'tencent',
+        id: this.data.id
+      },
+      success: function (res) {
+        wx.hideLoading();
+        // console.log('audioURL:');
+        // console.log(res);
+        that.setData({
+          audioURL: res.data.url
+        });
+        console.log('audio URL:' + that.data.audioURL);
+      }
+    });
   },
 
   /**

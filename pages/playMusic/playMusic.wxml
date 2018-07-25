@@ -7,9 +7,19 @@
 </view>
 
 <!-- lyric -->
-<!-- <scroll-view>
-  <text>{{song.???}}</text>
-</scroll-view> -->
+<scroll-view wx:if="{{otherLangLyric}}">
+  <view wx:if="{{otherLangLyric}}">
+    <text>{{otherLangLyric}}</text>
+    <text>{{chLyric}}</text>
+  </view>
+  <view wx:else>
+    <text>{{otherLangLyric}}</text>
+    <text>{{chLyric}}</text>
+  </view>
+</scroll-view>
+
+<!-- audio -->
+<audio src='{{audioURL}}'  />
 
 <!-- control bar -->
 <!-- <image src /> -->
