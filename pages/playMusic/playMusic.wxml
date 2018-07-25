@@ -1,0 +1,12 @@
+<!-- song img -->
+<!-- <view>
+  <image src = '{{song.???}}'  />
+</view> -->
+
+<!-- lyric -->
+<!-- <scroll-view>
+  <text>{{song.???}}</text>
+</scroll-view> -->
+
+<!-- control bar -->
+<!-- <image src /> -->

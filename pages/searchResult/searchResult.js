@@ -7,14 +7,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchKey: ''
+    searchKey: '',
+    songList: [],
+    picID: [],
+    picURL: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+
+  obtainImgURL: function (index) {
+    let that = this;
+    if(index < this.data.songList.length){
+      wx.request({
+        url: 'https://mkblog.cn/blog/musicapi',
+        data: {
+          key: 'test',
+          types: 'pic',
+          source: 'tencent',
+          id: that.data.songList[index].pic_id
+        },
+        success: function (res) {
+          let tempList = that.data.songList;
+          tempList[index].picURL = res.data.url;
+          that.setData({
+            songList: tempList
+          });
+          console.log('stored image for song[' + index + ']');
+          that.obtainImgURL(index+1);
+        }
+      })
+    }
+  },
+
   onLoad: function (options) {
     let searching = wx.getStorageSync('searchKey');
+    let that = this;
     this.setData({
       searchKey: searching
     });
@@ -22,6 +51,23 @@ Page({
       title: 'Loading...',
       icon: "loading",
       duration: 1000
+    });
+    wx.request({
+      url: 'https://mkblog.cn/blog/musicapi',
+      data: {
+        key: 'test',
+        types: 'search',
+        source: 'tencent',
+        name: that.data.searchKey
+      },
+      success: function (res) {
+        console.log('Search Result:');
+        console.log(res);
+        that.setData({
+          songList: res.data
+        });
+        that.obtainImgURL(0);
+      }
     });
   },
 
