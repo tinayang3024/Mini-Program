@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    song: {}
+    name:'',
+    singer:'',
+    picURL:'',
+    id:''
   },
 
   /**
@@ -17,7 +20,34 @@ Page({
       icon: "loading",
       duration: 1000
     });
-
+    console.log('selected song name:' + options.name); 
+    console.log('selected song singer:' + options.singer);
+    console.log('selected song picURL:' + options.picURL);
+    console.log('selected song ID:' + options.id);
+    this.setData({
+      name: options.name,
+      singer: options.singer,
+      picURL: options.picURL,
+      id: options.id
+    });
+    // wx.request({
+    //   url: 'https://mkblog.cn/blog/musicapi',
+    //   data: {
+    //     key: 'test',
+    //     types: 'search',
+    //     source: 'tencent',
+    //     id: options.id
+    //   },
+    //   success: function (res) {
+    //     wx.hideLoading();
+    //     console.log('selected song of Result:');
+    //     console.log(res);
+    //     that.setData({
+    //       songList: res.data
+    //     });
+    //     that.obtainImgURL(0);
+    //   }
+    // })
   },
 
   /**

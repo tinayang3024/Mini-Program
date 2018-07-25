@@ -50,7 +50,7 @@ Page({
     wx.showToast({
       title: 'Loading...',
       icon: "loading",
-      duration: 1000
+      duration: 10000
     });
     wx.request({
       url: 'https://mkblog.cn/blog/musicapi',
@@ -61,6 +61,7 @@ Page({
         name: that.data.searchKey
       },
       success: function (res) {
+        wx.hideLoading();
         console.log('Search Result:');
         console.log(res);
         that.setData({

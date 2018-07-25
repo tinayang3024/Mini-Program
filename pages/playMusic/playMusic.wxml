@@ -1,7 +1,10 @@
+
+<view>{{name}}</view>
+<view>{{singer}}</view>
 <!-- song img -->
-<!-- <view>
-  <image src = '{{song.???}}'  />
-</view> -->
+<view>
+  <image src = '{{picURL}}'  />
+</view>
 
 <!-- lyric -->
 <!-- <scroll-view>
