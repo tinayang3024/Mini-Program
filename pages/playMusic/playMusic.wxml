@@ -20,6 +20,7 @@
 
 <!-- audio -->
 <view class='musicBar'>
+  <!-- <audio id='myAudio' src='{{audioURL}}' autoplay='true'></audio> -->
   <image class='musicButton' mode='aspectFit' bindtap='lastSong' src='../../asserts/pictures/lastsong.png'></image>
   <image class='musicButton' mode='aspectFit' bindtap='audioPlay' src='../../asserts/pictures/play.png'></image>
   <image class='musicButton' mode='aspectFit'bindtap='nextSong' src='../../asserts/pictures/nextsong.png'></image>
