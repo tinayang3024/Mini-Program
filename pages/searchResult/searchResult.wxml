@@ -3,7 +3,7 @@
 <!-- navigator version  -->
 <scroll-view class='pageBody' scroll-y = 'true'>
   <!-- navigate to play page, enter the array name of the data -->
-  <navigator url='../playMusic/playMusic?id={{item.id}}&name={{item.name}}&singer={{item.artist}}&picURL={{item.picURL}}' wx:for="{{songList}}">
+  <navigator url='../playMusic/playMusic?id={{item.id}}&name={{item.name}}&singer={{item.artist}}&picURL={{item.picURL}}' data-name='{{item.name}}' data-picURL='{{item.picURL}}' data-id='{{item.id}}' data-singer='item.artist' bindtap='bindback' wx:for="{{songList}}">
     <view class='songList'>
       <image class ='songImg'src='{{item.picURL}}' />
       <view class='songInfo'>

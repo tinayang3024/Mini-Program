@@ -34,8 +34,55 @@ App({
       }
     })
   },
+
+  pushSongToPlayedHistory: function (name, singer, picURL, id, audioURL) {
+    // add song into played history
+    if (this.globalData.playedHistory.length !== 0) {
+      //if history is not empty
+      let found = false;
+      for (let i = 0; i < this.globalData.playedHistory.length; i++) {
+        if (this.globalData.playedHistory[i].id === id) {
+          //delete the item
+          this.globalData.playedHistory.splice(i, 1);
+          //push it to the end
+          this.globalData.playedHistory.push({
+            name: name,
+            singer: singer,
+            picURL: picURL,
+            id: id,
+            audioURL: audioURL
+          });
+          found = true;
+        }
+      }
+      if (found === false) {
+        //after searching through entire list-> no repeated ->push it to the end
+        this.globalData.playedHistory.push({
+          name: name,
+          singer: singer,
+          picURL: picURL,
+          id: id,
+          audioURL: audioURL
+        });
+      }
+    } else {
+      //if history is empty
+      this.globalData.playedHistory.push({
+        name: name,
+        singer: singer,
+        picURL: picURL,
+        id: id,
+        audioURL: audioURL
+      });
+    }
+    console.log('Played History Update:');
+    console.log(this.globalData.playedHistory);
+  },
+
+
   globalData: {
     userInfo: null,
-    playedHistory: []
+    playedHistory: [],
+    back: wx.getBackgroundAudioManager()
   }
 })

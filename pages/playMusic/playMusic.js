@@ -1,5 +1,5 @@
 const app = getApp()
-// const backgroundAudioManager
+
 
 Page({
 
@@ -13,7 +13,8 @@ Page({
     id:'',
     otherLangLyric:'',
     chLyric:'',
-    audioURL:''
+    audioURL:'',
+    playButtonURL: ''
   },
 
   /**
@@ -55,13 +56,13 @@ Page({
           that.setData({
             chLyric: res.data.lyric
           });
-          console.log('CH lyric loaded only');
+          console.log('Chinese song, lyric loaded');
         }else{
           that.setData({
             otherLangLyric: res.data.lyric,
             chLyric: res.data.tlyric
           });
-          console.log('other language & CH lyric loaded');
+          console.log('Non-Chinese song, lyric loaded');
         }
       }
     });
@@ -85,61 +86,17 @@ Page({
         console.log('audio URL:' + that.data.audioURL);
         //give URL to background manager
         
-        
-        //??????????????????????????????????????????????????????????????????????????????????????????????????????????
-        // backgroundAudioManager = wx.getBackgroundAudioManager();
-        // backgroundAudioManager.src = 'res.data.url';
-        
-        // add song into played history
-        if (app.globalData.playedHistory.length !== 0){
-          //if history is not empty
-          let found = false;
-          for (let i = 0; i < app.globalData.playedHistory.length;i++){
-            if (app.globalData.playedHistory[i].id === that.data.id){
-              //delete the item
-              app.globalData.playedHistory.splice(i,1);
-              //push it to the end
-              app.globalData.playedHistory.push({
-                name: that.data.name,
-                singer: that.data.singer,
-                picURL: that.data.picURL,
-                id: that.data.id,
-              });
-              found = true;
-            }
-          }
-          if(found === false){
-            //after searching through entire list-> no repeated ->push it to the end
-            app.globalData.playedHistory.push({
-              name: that.data.name,
-              singer: that.data.singer,
-              picURL: that.data.picURL,
-              id: that.data.id
-            });
-          }
-        }else{
-           //if history is empty
-          app.globalData.playedHistory.push({
-            name: that.data.name,
-            singer: that.data.singer,
-            picURL: that.data.picURL,
-            id: that.data.id
-          });
-        }
-        console.log('Played History:');
-        console.log(app.globalData.playedHistory);
       }
     });
-
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let audioCtx = wx.getBackgroundAudioManager();
-    backgroundAudioManager.src = this.data.audioURL;
   },
+
   audioPlay: function () {
     console.log('audio playing...');
     audioCtx.play();

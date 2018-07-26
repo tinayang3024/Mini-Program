@@ -1,5 +1,6 @@
 // pages/searchResult/searchResult.js
 let search = require("../search/search.js")
+const app = getApp()
 
 Page({
 
@@ -16,6 +17,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+
 
   obtainImgURL: function (index) {
     let that = this;
@@ -71,7 +73,46 @@ Page({
       }
     });
   },
+  bindback: function (e) {
+    // console.log(e.currentTarget.dataset.name);
+    let audioURL = '';
+    let song = e;
+    wx.request({
+      url: 'https://mkblog.cn/blog/musicapi',
+      data: {
+        key: 'test',
+        types: 'url',
+        source: 'tencent',
+        id: e.currentTarget.dataset.id
+      },
+      success: function (res) {
+        wx.hideLoading();
+        // console.log('audioURL:');
+        // console.log(res);
+        audioURL = res.data.url;
+        console.log(song);
 
+        let name = song.currentTarget.dataset.name;
+        let singer = song.currentTarget.dataset.singer;
+        let picURL = song.currentTarget.dataset.picurl;
+        let id = song.currentTarget.dataset.id
+
+        // const back = wx.getBackgroundAudioManager();
+        app.globalData.back.src = audioURL;
+        app.globalData.back.title = name;
+        app.globalData.back.coverImgUrl = picURL;
+        app.globalData.back.play();
+        app.pushSongToPlayedHistory(name, singer, picURL, id, audioURL);
+      }
+    });
+    // back.onPlay(() => {
+    //   console.log("Audio starts playing...");
+    // })
+    // back.onEnded(() => {
+    //   console.log("Audio ends playing...");
+    // })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
