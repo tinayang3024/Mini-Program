@@ -61,7 +61,7 @@ Page({
         name: that.data.searchKey
       },
       success: function (res) {
-        wx.hideLoading();
+        wx.hideToast();
         console.log('Search Result:');
         console.log(res);
         that.setData({

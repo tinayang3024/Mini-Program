@@ -1,0 +1,6 @@
+.musicBar {
+  display:flex
+}
+.musicButton {
+  flex:1;
+}
