@@ -1,4 +1,10 @@
 <!--index.wxml-->
+
+
+<!-- music bar test -->
+<view class='musicBar'>try</view>
+
+
 <!-- template for song list -->
 <template name='listBlock'>
   <view class='listBlock'>

@@ -73,6 +73,8 @@ Page({
       }
     });
   },
+
+  //start to play BGM
   bindback: function (e) {
     // console.log(e.currentTarget.dataset.name);
     let audioURL = '';
@@ -102,6 +104,9 @@ Page({
         app.globalData.back.title = name;
         app.globalData.back.coverImgUrl = picURL;
         app.globalData.back.play();
+        
+        //give info to played history and music bar
+        app.globalData.BGMstatus = true;
         app.pushSongToPlayedHistory(name, singer, picURL, id, audioURL);
       }
     });

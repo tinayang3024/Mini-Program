@@ -8,3 +8,49 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.musicBar {
+  background-color: #e4f8ff;
+  position: fixed;
+  z-index: 1;
+  bottom: 0%;
+  width: 100%;
+  height: 100rpx;
+  /* filter: blur(1.17rem); */
+}
+
+.barImg {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx 10rpx 10rpx 50rpx;
+  display: flex;
+  float:left;
+  flex:1;
+  border: hidden;
+  border-radius: 50%;
+}
+
+.barInfo {
+  display: flex;
+  float:left;
+  margin: 0%;
+  border: hidden;
+}
+.barName {
+  font-size: 40rpx;
+  color: grey;
+  margin:0%;
+  padding:0%;
+}
+.barSinger {
+  font-size: 30rpx;
+  color: grey;
+  margin:0%;
+  padding:0%;
+}
+.barButton {
+  float: right;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx 0rpx 10rpx 10rpx;
+}

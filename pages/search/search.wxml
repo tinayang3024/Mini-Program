@@ -1,4 +1,17 @@
 
+<!-- music bar test --> 
+<view class='musicBar' wx:if="{{currentPicURL}}">
+  <image class='barImg' src='{{currentPicURL}}' mode='aspectFit' />
+  <view class='barInfo'>
+    <view class='barName'>{{currentName}}</view>
+    <view class='barSinger'>{{currentSinger}}</view>
+  </view>
+  <image class='barButton' src='{{buttonURL}}' bindtap='pauseOrPlay' />
+</view>
+
+
+
+
 
 <view class='container'>
   <view class='dropdown'>

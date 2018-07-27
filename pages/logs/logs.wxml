@@ -1,3 +1,10 @@
+
+<!-- music bar test -->
+<view class='musicBar'>try</view>
+
+
+
+
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo" wx:if="{{!hasUserInfo && canIUse}}">

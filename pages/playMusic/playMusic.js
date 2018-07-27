@@ -16,7 +16,9 @@ Page({
     audioURL:'',
     playButtonURL: ''
   },
+  puaseOrPlay: function () {
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -84,12 +86,10 @@ Page({
           audioURL: res.data.url
         });
         console.log('audio URL:' + that.data.audioURL);
-        //give URL to background manager
         
       }
     });
   },
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

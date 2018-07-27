@@ -35,6 +35,8 @@ App({
     })
   },
 
+
+//must use whenever you starts to play a song
   pushSongToPlayedHistory: function (name, singer, picURL, id, audioURL) {
     // add song into played history
     if (this.globalData.playedHistory.length !== 0) {
@@ -77,12 +79,50 @@ App({
     }
     console.log('Played History Update:');
     console.log(this.globalData.playedHistory);
+
+
+    //assign values to music bar elements
+    // let tempName = this.globalData.playedHistory[playedHistory.length - 1].name;
+    // let tempSinger = this.globalData.playedHistory[playedHistory.length - 1].singer;
+    // let tempPicURL = this.globalData.playedHistory[playedHistory.length - 1].picURL;
+    // this.globalData.currentName = tempName;
+    // this.globalData.currentSinger = tempSinger;
+    // this.globalData.currentpicURL = tempPicURL;
+    // console.log('current song' + this.globalData.currentName);
+    // console.log('current singer' + this.globalData.currentSinger);
+    // console.log('current picURL' + this.globalData.currentpicURL);
+
   },
 
+//must use whenever you starts to play a song
 
+  pauseOrPlay: function () {
+    // console.log('status before switch:' + this.globalData.BGMstatus);
+    if (this.globalData.BGMstatus === true){
+      // pasue if music is playing
+      this.globalData.back.pause();
+      console.log("Playing");
+      // from the perspection of single js page 
+      this.globalData.buttonSrc = '../../asserts/pictures/play.png';
+      this.globalData.BGMstatus = false;
+    }else{
+      // play if music is pause
+      this.globalData.back.play();
+      console.log("Paused");
+      // from the perspection of single js page 
+      this.globalData.buttonSrc = '../../asserts/pictures/pause.png';
+      this.globalData.BGMstatus = true;
+    }
+    // console.log('status after switch:' + this.globalData.BGMstatus);
+  },
   globalData: {
     userInfo: null,
     playedHistory: [],
-    back: wx.getBackgroundAudioManager()
+    back: wx.getBackgroundAudioManager(),
+    BGMstatus: false,
+    buttonSrc: '../../asserts/pictures/play.png'
+    // currentName:'',
+    // currentSinger:'',
+    // currentpicURL:''
   }
 })

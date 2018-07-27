@@ -19,7 +19,7 @@
 </scroll-view>
 
 <!-- audio -->
-<view class='musicBar'>
+<view>
   <!-- <audio id='myAudio' src='{{audioURL}}' autoplay='true'></audio> -->
   <image class='musicButton' mode='aspectFit' bindtap='lastSong' src='../../asserts/pictures/lastsong.png'></image>
   <image class='musicButton' mode='aspectFit' bindtap='puaseOrPlay' src='{{playButtonURL}}'></image>
