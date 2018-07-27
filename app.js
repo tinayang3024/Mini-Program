@@ -120,9 +120,6 @@ App({
     playedHistory: [],
     back: wx.getBackgroundAudioManager(),
     BGMstatus: false,
-    buttonSrc: '../../asserts/pictures/play.png'
-    // currentName:'',
-    // currentSinger:'',
-    // currentpicURL:''
+    buttonSrc: '../../asserts/pictures/pause.png'
   }
 })

@@ -16,9 +16,6 @@ Page({
     audioURL:'',
     playButtonURL: ''
   },
-  puaseOrPlay: function () {
-
-  },
   /**
    * 生命周期函数--监听页面加载
    */

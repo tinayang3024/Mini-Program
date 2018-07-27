@@ -8,13 +8,29 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    currentPicURL: '',
+    currentName: '',
+    currentSinger: '',
+    currentStatus: false,
+    buttonURL: ''
   },
   //事件处理函数
   bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
+  },
+  pauseOrPlay: function () {
+    // console.log('switch pause/play function');
+    // console.log('before switching buttonURL:' + this.data.buttonURL);
+    app.pauseOrPlay();
+    // console.log('after switching buttonURL:' + this.data.buttonURL);
+    if (app.globalData.playedHistory.length > 0) {
+      this.setData({
+        buttonURL: app.globalData.buttonSrc
+      });
+    }
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -51,5 +67,19 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  onShow: function () {
+    if (app.globalData.playedHistory.length > 0) {
+      console.log('passing current song info');
+      this.setData({
+        currentPicURL: app.globalData.playedHistory[app.globalData.playedHistory.length - 1].picURL,
+        currentName: app.globalData.playedHistory[app.globalData.playedHistory.length - 1].name,
+        currentSinger: app.globalData.playedHistory[app.globalData.playedHistory.length - 1].singer,
+        currentStatus: app.globalData.BGMstatus,
+        buttonURL: app.globalData.buttonSrc
+      });
+      // console.log('from onShow search.js: buttonSrc' + app.globalData.buttonSrc + 'buttonURL' + this.data.buttonURL);
+    }
+
+  },
 })

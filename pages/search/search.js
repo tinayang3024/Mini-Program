@@ -15,10 +15,10 @@ Page({
     buttonURL: ''
   },
   pauseOrPlay: function () {
-    console.log('switch pause/play function');
-    console.log('before switching buttonURL:' + this.data.buttonURL);
+    // console.log('switch pause/play function');
+    // console.log('before switching buttonURL:' + this.data.buttonURL);
     app.pauseOrPlay();
-    console.log('after switching buttonURL:' + this.data.buttonURL);
+    // console.log('after switching buttonURL:' + this.data.buttonURL);
     if (app.globalData.playedHistory.length > 0) {
       this.setData({
         buttonURL: app.globalData.buttonSrc
@@ -55,11 +55,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.playedHistory.length > 0) {
-      this.setData({
-        buttonURL: app.globalData.buttonSrc
-      });
-    }
+    // if (app.globalData.playedHistory.length > 0) {
+    //   this.setData({
+    //     buttonURL: app.globalData.buttonSrc
+    //   });
+    // }
   },
 
   /**
@@ -80,7 +80,7 @@ Page({
         currentName: app.globalData.playedHistory[app.globalData.playedHistory.length - 1].name,
         currentSinger: app.globalData.playedHistory[app.globalData.playedHistory.length - 1].singer,
         currentStatus: app.globalData.BGMstatus,
-        // buttonURL: app.globalData.buttonSrc
+        buttonURL: app.globalData.buttonSrc
       });
       // console.log('from onShow search.js: buttonSrc' + app.globalData.buttonSrc + 'buttonURL' + this.data.buttonURL);
     }
