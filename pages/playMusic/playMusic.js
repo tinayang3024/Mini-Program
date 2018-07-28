@@ -11,9 +11,11 @@ Page({
     singer:'',
     picURL:'',
     id:'',
-    otherLangLyric:'',
-    chLyric:'',
-    audioURL:'',
+    otherLangLyric: [],
+    chLyric: [],
+    otherLangLyricSet: {},
+    chLyricSet: {},
+    audioURL: '',
     playButtonURL: ''
   },
   /**
@@ -51,18 +53,101 @@ Page({
         wx.hideToast();
         // console.log('lyric:');
         // console.log(res);
-        if(res.tlyric === ''){
+
+        //check if there's lyric for the song
+        // if (!res.data.lyric) {
+        //   console.log('No lyric')
+        //   return false;
+        // }
+
+        //assign lyric to data
+        if(res.tlyric === '' && res.lyric === ''){
+          //spliting lyric
+          let lyric = res.data.lyric;
+          let timearr = lyric.split('[');
+          let obj = {};
+          let lyricArr = [];
+          timearr.forEach((item) => {
+            let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
+            let val = item.split(']')[1];
+
+            obj[key] = val;
+          })
+          for (let key in obj) {
+            obj[key] = obj[key].split('\n')[0];
+            lyricArr.push(obj[key]);
+          }
+          // console.log(obj);
+          console.log(lyricArr);
+
+        // cb && cb(obj, lyricArr)
+
           that.setData({
-            chLyric: res.data.lyric
+            chLyric: lyricArr,
+            chLyricSet: obj
           });
           console.log('Chinese song, lyric loaded');
         }else{
+          //spliting tlyric
+          let tlyric = res.data.tlyric;
+          let ttimearr = tlyric.split('[');
+          let tobj = {};
+          let tlyricArr = [];
+          ttimearr.forEach((item) => {
+            let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
+            let val = item.split(']')[1];
+            console.log(key);
+            tobj[key] = val;
+          })
+          for (let key in tobj) {
+            tobj[key] = tobj[key].split('\n')[0];
+            tlyricArr.push(tobj[key]);
+          }
+          console.log(tobj);
+          console.log(tlyricArr);
+
+        // cb && cb(tobj, lyricArr)
+
+          //spliting lyric
+          let lyric = res.data.lyric;
+          let timearr = lyric.split('[')
+          let obj = {};
+          let lyricArr = [];
+          timearr.forEach((item) => {
+            //key is time in second
+            let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
+            //val is each line of lyric
+            let val = item.split(']')[1];
+
+            obj[key] = val;
+          })
+          for (let key in obj) {
+            obj[key] = obj[key].split('\n')[0];
+            lyricArr.push(obj[key]);
+          }
+          console.log(obj);
+          console.log(lyricArr);
+
+        // cb && cb(obj, lyricArr)
+          
           that.setData({
-            otherLangLyric: res.data.lyric,
-            chLyric: res.data.tlyric
+            otherLangLyric: tlyricArr,
+            chLyric: lyricArr,
+            otherLangLyricSet: tobj,
+            chLyricSet: obj
           });
           console.log('Non-Chinese song, lyric loaded');
         }
+
+        //testing lyric
+        // if(app.globalData.BGMstatus){
+        //   let condition = true;
+        //   while (condition) {
+        //     let index = Math.round(app.globalData.back.currentTime);
+        //     console.log('time: ' + Math.round(app.globalData.back.currentTime));
+        //     console.log(that.data.otherLangLyricSet.index);
+        //   }
+        // }
       }
     });
 

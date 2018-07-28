@@ -101,19 +101,20 @@ App({
     if (this.globalData.BGMstatus === true){
       // pasue if music is playing
       this.globalData.back.pause();
-      console.log("Playing");
+      console.log("Paused");
       // from the perspection of single js page 
       this.globalData.buttonSrc = '../../asserts/pictures/play.png';
       this.globalData.BGMstatus = false;
     }else{
       // play if music is pause
       this.globalData.back.play();
-      console.log("Paused");
+      console.log("Playing");
       // from the perspection of single js page 
       this.globalData.buttonSrc = '../../asserts/pictures/pause.png';
       this.globalData.BGMstatus = true;
     }
     // console.log('status after switch:' + this.globalData.BGMstatus);
+    // console.log(this.globalData.back.currentTime);
   },
   globalData: {
     userInfo: null,
