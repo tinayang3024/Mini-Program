@@ -89,6 +89,7 @@ Page({
       },
       success: function (res) {
         wx.hideLoading();
+        app.BGMonPlay();
         // console.log('audioURL:');
         // console.log(res);
         audioURL = res.data.url;

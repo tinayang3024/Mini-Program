@@ -1,23 +1,21 @@
+
+<!-- background image -->
 <view class='bg' style='background-image: url({{picURL}})'></view>
-<!-- style='background-image: url({{picURL}})' -->
-  <!-- <image class='bg' src='{{picURL}}'></image> -->
+
+
 <view class='pageContent'>
-    <view>{{name}}</view>
-    <view>{{singer}}</view>
-    <!-- song img -->
-    <view>
-      <image src = '{{picURL}}'  />
+    <view class='songInfo'>
+      <view>{{name}}</view>
+      <view>{{singer}}</view>
     </view>
+    <!-- song img -->
+    <image class='songImg' src = '{{picURL}}'  />
 
     <!-- lyric -->
-    <scroll-view wx:if="{{otherLangLyric}}">
-      <view wx:if="{{otherLangLyric}}">
-        <text>{{otherLangLyric}}</text>
-        <text>{{chLyric}}</text>
-      </view>
-      <view wx:else>
-        <text>{{otherLangLyric}}</text>
-        <text>{{chLyric}}</text>
+    <scroll-view class='lyric' scroll-y='true' scroll-into-view='{{lyricToView}}'>
+      <view wx:for='{{lyricSet}}' id='{{item.index}}'> 
+            <view>{{item.tlyric}}</view>
+            <view>{{item.lyric}}</view>
       </view>
     </scroll-view>
 

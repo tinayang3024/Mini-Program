@@ -16,7 +16,6 @@
   bottom: 0%;
   width: 100%;
   height: 100rpx;
-  /* filter: blur(1.17rem); */
 }
 
 .barImg {

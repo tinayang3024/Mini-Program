@@ -11,13 +11,21 @@ Page({
     singer:'',
     picURL:'',
     id:'',
-    otherLangLyric: [],
-    chLyric: [],
-    otherLangLyricSet: {},
-    chLyricSet: {},
+    otherLangLyric: [],//array of lyric
+    chLyric: [],//array of lyric
+    lyricSet: [],//array of objects that contain lyric and time
     audioURL: '',
-    playButtonURL: ''
+    playButtonURL: '',
+    lyricType: 'other',//chinese or other
+    lyricToView: ''
   },
+
+  // lyricScroll: function () {
+  //   console.log('lyricScroll');
+  //   this.setData({
+  //     lyricToView: app.globalData.lyricPosition
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -60,94 +68,107 @@ Page({
         //   return false;
         // }
 
+
+        //write more for no lyric song!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //assign lyric to data
-        if(res.tlyric === '' && res.lyric === ''){
+        if(res.data.tlyric === ''){
+          //chinese lyric only
           //spliting lyric
           let lyric = res.data.lyric;
           let timearr = lyric.split('[');
-          let obj = {};
-          let lyricArr = [];
+          let timeArray = [];
+          let lyricArray = [];
+          let timeLyricArray = [];
           timearr.forEach((item) => {
             let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
             let val = item.split(']')[1];
-
-            obj[key] = val;
+            timeArray.push('time' + key);
+            lyricArray.push(val);
           })
-          for (let key in obj) {
-            obj[key] = obj[key].split('\n')[0];
-            lyricArr.push(obj[key]);
+          // console.log('Time: ' + timeArray);
+          // console.log('Lyric: ' + lyricArray);
+          for (let i = 0; i < timeArray.length; i++){
+            timeLyricArray.push({ time: timeArray[i], lyric: lyricArray[i], index: 'index' + i});
           }
-          // console.log(obj);
-          console.log(lyricArr);
-
-        // cb && cb(obj, lyricArr)
 
           that.setData({
-            chLyric: lyricArr,
-            chLyricSet: obj
+            chLyric: lyricArray,
+            lyricSet: timeLyricArray,
+            lyricType: 'Chinese'
           });
+          console.log('lyricSet: ');
+          console.log(that.data.lyricSet);
+          console.log('lyric Type: ' + that.data.lyricType);
           console.log('Chinese song, lyric loaded');
         }else{
+          //2 languages lyric
           //spliting tlyric
           let tlyric = res.data.tlyric;
           let ttimearr = tlyric.split('[');
-          let tobj = {};
-          let tlyricArr = [];
+          let ttimeArray = [];
+          let tlyricArray = [];
+          let ttimeLyricArray = [];
           ttimearr.forEach((item) => {
             let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
             let val = item.split(']')[1];
-            console.log(key);
-            tobj[key] = val;
+            ttimeArray.push('time' + key);
+            tlyricArray.push(val);
           })
-          for (let key in tobj) {
-            tobj[key] = tobj[key].split('\n')[0];
-            tlyricArr.push(tobj[key]);
+          for (let i = 0; i < ttimeArray.length; i++) {
+            ttimeLyricArray.push({ time: ttimeArray[i], lyric: tlyricArray[i], index: 'index' + i});
           }
-          console.log(tobj);
-          console.log(tlyricArr);
-
-        // cb && cb(tobj, lyricArr)
 
           //spliting lyric
           let lyric = res.data.lyric;
           let timearr = lyric.split('[')
-          let obj = {};
-          let lyricArr = [];
+          let lyricArray = [];
+          let timeLyricArray = [];
           timearr.forEach((item) => {
-            //key is time in second
-            let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
-            //val is each line of lyric
+            // let key = parseInt(item.split(']')[0].split(':')[0]) * 60 + parseInt(item.split(']')[0].split(':')[1]);
             let val = item.split(']')[1];
-
-            obj[key] = val;
+            lyricArray.push(val);
           })
-          for (let key in obj) {
-            obj[key] = obj[key].split('\n')[0];
-            lyricArr.push(obj[key]);
+          for (let i = 0; i < lyricArray.length; i++) {
+            ttimeLyricArray[i].tlyric = lyricArray[i];
           }
-          console.log(obj);
-          console.log(lyricArr);
-
-        // cb && cb(obj, lyricArr)
           
           that.setData({
-            otherLangLyric: tlyricArr,
-            chLyric: lyricArr,
-            otherLangLyricSet: tobj,
-            chLyricSet: obj
+            otherLangLyric: tlyricArray,
+            chLyric: lyricArray,
+            lyricSet: ttimeLyricArray,
+            lyricType: 'other'
           });
+          console.log('lyricSet: ');
+          console.log(that.data.lyricSet);
+          console.log('lyric Type: ' + that.data.lyricType);
           console.log('Non-Chinese song, lyric loaded');
         }
 
-        //testing lyric
-        // if(app.globalData.BGMstatus){
-        //   let condition = true;
-        //   while (condition) {
-        //     let index = Math.round(app.globalData.back.currentTime);
-        //     console.log('time: ' + Math.round(app.globalData.back.currentTime));
-        //     console.log(that.data.otherLangLyricSet.index);
-        //   }
-        // }
+        //test for lyric
+        console.log('lyric program starts');
+        let i = 0;
+        while (app.globalData.BGMstatus) {
+          // !(isNaN(that.data.lyricSet[index].time))
+          if (that.data.lyricSet[i].time !== 'timeNaN') {
+            console.log('NaN event after');
+            if (that.data.lyricSet[i].time === ('time' + Math.floor(app.globalData.back.currentTime))) {
+              console.log('index passed: ' + i);
+              let temp = that.data.lyricSet[i].index;
+
+              // console.log('success!!!!!!! assigned value: ' + temp);
+              that.setData({
+                lyricToView: temp
+              })
+              console.log('success!!!!!!! assigned value: ' + that.data.lyricToView);
+              i = i + 1;
+              // condition = false;
+              // console.log('success!!!!!!!');
+            }
+          } else {
+            i = i + 1;
+            console.log('NaN occured');
+          }
+        }
       }
     });
 
@@ -193,7 +214,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
   },
 
   /**
@@ -231,3 +251,5 @@ Page({
     
   }
 })
+
+debug:true

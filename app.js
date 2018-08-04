@@ -94,7 +94,7 @@ App({
 
   },
 
-//must use whenever you starts to play a song
+  //must use whenever you starts to play a song
 
   pauseOrPlay: function () {
     // console.log('status before switch:' + this.globalData.BGMstatus);
@@ -116,11 +116,43 @@ App({
     // console.log('status after switch:' + this.globalData.BGMstatus);
     // console.log(this.globalData.back.currentTime);
   },
+
+  BGMonPlay: function () {
+    this.globalData.back.onPlay(()=>{
+      console.log('BGM status turns true');
+
+      this.globalData.BGMstatus = true;
+    })
+  },
+  BGMonEnded: function () {
+    this.globalData.back.onEnded(() => {
+      console.log('BGM status turns false');
+
+      this.globalData.BGMstatus = false;
+    })
+  },
+  BGMonPause: function () {
+    this.globalData.back.onPause(() => {
+      console.log('BGM status turns false');
+
+      this.globalData.BGMstatus = false;
+    })
+  },
+  BGMonStop: function () {
+    this.globalData.back.onStop(() => {
+      console.log('BGM status turns false');
+
+      this.globalData.BGMstatus = false;
+    })
+  },
+
+
   globalData: {
     userInfo: null,
     playedHistory: [],
     back: wx.getBackgroundAudioManager(),
     BGMstatus: false,
-    buttonSrc: '../../asserts/pictures/pause.png'
+    buttonSrc: '../../asserts/pictures/pause.png',
+    lyricPosition: ''
   }
 })
